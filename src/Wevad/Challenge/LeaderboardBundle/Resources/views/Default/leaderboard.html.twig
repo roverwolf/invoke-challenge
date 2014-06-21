@@ -1,0 +1,39 @@
+{% extends '::base.html.twig' %}
+
+{% block title 'Leaderboard '%}
+
+{% block body %}
+    <div id="outer">
+        <div class="leaderboard">
+            {#
+            <div class="player selected">
+                <span class="name">Nikola Tesla</span>
+                <span class="score">8435</span>
+            </div>
+            #}
+        </div>
+        {#
+        <div class="details">
+            <div class="name">Carl Friderich Gauss</div>
+            <input type="button" class="inc" value="Give 5 points"/>
+        </div>
+        #}
+        <div class="none">Click a player to select</div>
+    </div>
+{% endblock body %}
+
+{% block javascripts %}
+    {{ parent() }}
+
+    <script>
+    </script>
+{% endblock javascripts %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    {% stylesheets debug=false output="css/primary.css"
+        '@WevadChallengeLeaderboardBundle/Resources/public/css/main.css'
+    %}
+        <link href="{{ asset_url }}" rel="stylesheet">
+    {% endstylesheets %}
+{% endblock %}

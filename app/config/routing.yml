@@ -1,0 +1,5 @@
+wevad_challenge_leaderboard:
+    resource: "@WevadChallengeLeaderboardBundle/Controller/"
+    type:     annotation
+    prefix:   /
+

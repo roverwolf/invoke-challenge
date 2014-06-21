@@ -1,4 +1,5 @@
 <?php
+umask(0);
 
 use Symfony\Component\HttpKernel\Kernel;
 use Symfony\Component\Config\Loader\LoaderInterface;
@@ -16,6 +17,7 @@ class AppKernel extends Kernel
             new Symfony\Bundle\AsseticBundle\AsseticBundle(),
             new Doctrine\Bundle\DoctrineBundle\DoctrineBundle(),
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
+            new Wevad\Challenge\LeaderboardBundle\WevadChallengeLeaderboardBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {
