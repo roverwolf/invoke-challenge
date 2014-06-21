@@ -5,12 +5,12 @@ namespace Wevad\Challenge\LeaderboardBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Leader
+ * Player
  *
- * @ORM\Table(name="leader")
- * @ORM\Entity(repositoryClass="Wevad\Challenge\LeaderboardBundle\Entity\LeaderRepository")
+ * @ORM\Table(name="player")
+ * @ORM\Entity(repositoryClass="Wevad\Challenge\LeaderboardBundle\Entity\PlayerRepository")
  */
-class Leader
+class Player
 {
     /**
      * @var integer

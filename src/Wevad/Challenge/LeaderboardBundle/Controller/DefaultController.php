@@ -14,10 +14,10 @@ class DefaultController extends Controller
      */
     public function leaderboardAction()
     {
-        $leaders = $this->getDoctrine()->getRepository('WevadChallengeLeaderboardBundle:Leader')->findAll();
+        $players = $this->getDoctrine()->getRepository('WevadChallengeLeaderboardBundle:Player')->findAll();
 
         return array(
-            'leaders' => $leaders,
+            'players' => $players,
         );
     }
 }

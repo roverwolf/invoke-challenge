@@ -5,10 +5,10 @@
 {% block body %}
     <div id="outer">
         <div class="leaderboard">
-            {% for leader in leaders %}
-                <div class="player selected">
-                    <span class="name">{{ leader.name }}</span>
-                    <span class="score">{{ leader.points }}</span>
+            {% for player in players %}
+                <div class="player">
+                    <span class="name">{{ player.name }}</span>
+                    <span class="score">{{ player.points }}</span>
                 </div>
             {% endfor %}
         </div>
@@ -24,8 +24,13 @@
 
 {% block javascripts %}
     {{ parent() }}
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 
     <script>
+        $(document).on('click', 'div.player', function(e){
+            $(e.target).closest('.leaderboard').find('.player').removeClass('selected');
+            $(e.target).closest('.player').addClass('selected');
+        });
     </script>
 {% endblock javascripts %}
 
