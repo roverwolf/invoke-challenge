@@ -1,0 +1,12 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}All Players{% endblock %}
+
+{% block body %}
+    {% for player in players %}
+        <div class="player player-{{ player.id }}" data-id="{{ player.id }}">
+            <span class="name">{{ player.name }}</span>
+            <span class="score">{{ player.points }}</span>
+        </div>
+    {% endfor %}
+{% endblock %}

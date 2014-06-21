@@ -31,7 +31,7 @@ body {
     .player.selected .score {
       color: #000; }
 
-.details, .none {
+.details {
   font-weight: 700;
   font-size: 2em;
   border: 4px none #ccc;

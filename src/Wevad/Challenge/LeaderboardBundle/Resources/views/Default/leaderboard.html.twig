@@ -3,34 +3,38 @@
 {% block title 'Leaderboard '%}
 
 {% block body %}
-    <div id="outer">
+    <div id="outer" class="initial">
         <div class="leaderboard">
-            {% for player in players %}
-                <div class="player">
-                    <span class="name">{{ player.name }}</span>
-                    <span class="score">{{ player.points }}</span>
-                </div>
-            {% endfor %}
         </div>
-        {#
         <div class="details">
-            <div class="name">Carl Friderich Gauss</div>
-            <input type="button" class="inc" value="Give 5 points"/>
+            <div class="none">Click a player to select</div>
         </div>
-        #}
-        <div class="none">Click a player to select</div>
     </div>
+
+    <script type="text/html" id="template-player">
+        <span class="name"><%= name %></span>
+        <span class="score"><%= points %></span>
+    </script>
+
+    <script type="text/html" id="template-details">
+        <div class="name"><%= name %></div>
+        <input type="button" class="inc" value="Give 5 points"/>
+    </script>
 {% endblock body %}
 
 {% block javascripts %}
     {{ parent() }}
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.6.0/underscore-min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/backbone.js/1.1.2/backbone-min.js"></script>
+    {% javascripts
+        '@WevadChallengeLeaderboardBundle/Resources/public/js/leaderboard.js'
+    %}
+        <script src="{{ asset_url }}"></script>
+    {% endjavascripts %}
 
     <script>
-        $(document).on('click', 'div.player', function(e){
-            $(e.target).closest('.leaderboard').find('.player').removeClass('selected');
-            $(e.target).closest('.player').addClass('selected');
-        });
+        new leaderboard.LeaderboardView({collection: new leaderboard.Players()});
     </script>
 {% endblock javascripts %}
 

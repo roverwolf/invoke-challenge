@@ -1,6 +1,9 @@
+/app/config/deploy.rb
 /web/bundles/
 /web/css/*
 !/web/css/.gitkeep
+/web/js/*
+!/web/js/.gitkeep
 /app/config/parameters.yml
 /var/bootstrap.php.cache
 /var/cache/*

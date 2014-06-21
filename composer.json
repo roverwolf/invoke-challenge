@@ -21,6 +21,7 @@
         "sensio/framework-extra-bundle": "~3.0",
         "doctrine/doctrine-migrations-bundle": "dev-master",
         "doctrine/migrations": "dev-master",
+        "jms/di-extra-bundle": "~1.4.0",
         "incenteev/composer-parameter-handler": "~2.0"
     },
     "require-dev": {

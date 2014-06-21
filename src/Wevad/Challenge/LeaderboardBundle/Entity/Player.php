@@ -10,7 +10,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="player")
  * @ORM\Entity(repositoryClass="Wevad\Challenge\LeaderboardBundle\Entity\PlayerRepository")
  */
-class Player
+class Player implements \JsonSerializable
 {
     /**
      * @var integer
@@ -19,21 +19,21 @@ class Player
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    private $id;
+    protected $id;
 
     /**
      * @var string
      *
      * @ORM\Column(name="name", type="string", length=255)
      */
-    private $name;
+    protected $name;
 
     /**
      * @var integer
      *
      * @ORM\Column(name="points", type="integer")
      */
-    private $points = 0;
+    protected $points = 0;
 
 
     /**
@@ -87,5 +87,21 @@ class Player
     public function getPoints()
     {
         return $this->points;
+    }
+
+    /**
+     * (PHP 5 &gt;= 5.4.0)<br/>
+     * Specify data which should be serialized to JSON
+     * @link http://php.net/manual/en/jsonserializable.jsonserialize.php
+     * @return mixed data which can be serialized by <b>json_encode</b>,
+     * which is a value of any type other than a resource.
+     */
+    function jsonSerialize()
+    {
+        return array(
+            'id'     => $this->getId(),
+            'name'   => $this->getName(),
+            'points' => $this->getPoints(),
+        );
     }
 }
