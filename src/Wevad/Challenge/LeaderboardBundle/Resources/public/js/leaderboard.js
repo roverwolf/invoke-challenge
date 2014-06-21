@@ -108,9 +108,27 @@ leaderboard.LeaderboardView = Backbone.View.extend({
     ,detail: new leaderboard.DetailView()
 
     ,initialize: function(){
+        var thiz = this;
+
         this.listenTo(this.collection, 'all', this.render);
 
         this.collection.fetch();
+
+        if (window.pubnub) {
+            pubnub.subscribe({
+                channel: 'player_updates'
+                ,message: function(m){
+                    var
+                        update = $.parseJSON(m)
+                        ,player = thiz.collection.get(update.id)
+                        ;
+
+                    if (player) {
+                        player.set('points', update.points);
+                    }
+                }
+            });
+        }
     }
 
     ,render: function(){

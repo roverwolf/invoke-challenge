@@ -8,6 +8,12 @@
           "": "src/"
         }
     },
+    "repositories" : {
+        "pubnub/pubnub" : {
+            "type":"git",
+            "url":"https://github.com/pubnub/php"
+        }
+    },
     "require": {
         "php": ">=5.3.3",
         "symfony/symfony": "2.5.*",
@@ -22,6 +28,7 @@
         "doctrine/doctrine-migrations-bundle": "dev-master",
         "doctrine/migrations": "dev-master",
         "jms/di-extra-bundle": "~1.4.0",
+        "pubnub/pubnub": "dev-master",
         "incenteev/composer-parameter-handler": "~2.0"
     },
     "require-dev": {

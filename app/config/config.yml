@@ -2,6 +2,11 @@ imports:
     - { resource: parameters.yml }
     - { resource: security.yml }
 
+parameters:
+    debug_toolbar:          true
+    debug_redirects:        false
+    use_assetic_controller: true
+
 framework:
     #esi:             ~
     #translator:      { fallback: "%locale%" }
@@ -28,6 +33,8 @@ framework:
 twig:
     debug:            "%kernel.debug%"
     strict_variables: "%kernel.debug%"
+    globals:
+        pubnub_subscribe_key: %pubnub_subscribe_key%
 
 # Assetic Configuration
 assetic:

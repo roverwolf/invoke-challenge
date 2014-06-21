@@ -19,4 +19,12 @@ class PlayerEvent extends Event
     {
         $this->player = $player;
     }
+
+    /**
+     * @return Player
+     */
+    public function getPlayer()
+    {
+        return $this->player;
+    }
 }

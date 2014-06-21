@@ -24,9 +24,20 @@
 
 {% block javascripts %}
     {{ parent() }}
+    <!--[if lt IE 8]>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/json2/20130526/json2.min.js"></script>
+    <![endif]-->
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.6.0/underscore-min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/backbone.js/1.1.2/backbone-min.js"></script>
+    {% if pubnub_subscribe_key is defined %}
+        <script src="http://cdn.pubnub.com/pubnub.min.js"></script>
+        <script>
+            var pubnub = PUBNUB.init({
+                subscribe_key: '{{ pubnub_subscribe_key }}'
+            });
+        </script>
+    {% endif %}
     {% javascripts
         '@WevadChallengeLeaderboardBundle/Resources/public/js/leaderboard.js'
     %}
