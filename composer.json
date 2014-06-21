@@ -15,7 +15,9 @@
         }
     },
     "require": {
-        "php": ">=5.3.3",
+        "php": ">=5.4.8",
+        "ext-pdo_sqlite": "~1.0.1",
+        "ext-sqlite3": "~0.7-dev",
         "symfony/symfony": "2.5.*",
         "symfony/icu": "~1.0.0",
         "doctrine/orm": "~2.2,>=2.2.3",
@@ -41,7 +43,7 @@
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::clearCache",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installAssets",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installRequirementsFile",
-            "chmod 666 var/database/*.db"
+            "./bin/fix_permissions"
         ],
         "post-update-cmd": [
             "Incenteev\\ParameterHandler\\ScriptHandler::buildParameters",
@@ -49,7 +51,7 @@
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::clearCache",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installAssets",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installRequirementsFile",
-            "chmod 666 var/database/*.db"
+            "./bin/fix_permissions"
         ]
     },
     "config": {
