@@ -5,12 +5,12 @@
 {% block body %}
     <div id="outer">
         <div class="leaderboard">
-            {#
-            <div class="player selected">
-                <span class="name">Nikola Tesla</span>
-                <span class="score">8435</span>
-            </div>
-            #}
+            {% for leader in leaders %}
+                <div class="player selected">
+                    <span class="name">{{ leader.name }}</span>
+                    <span class="score">{{ leader.points }}</span>
+                </div>
+            {% endfor %}
         </div>
         {#
         <div class="details">
