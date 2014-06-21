@@ -18,6 +18,7 @@ Capfile
 !bin/symfony_requirements
 !bin/fix_permissions
 !bin/install_composer
+!bin/setup
 /composer.phar
 .*.sw?
 *~
