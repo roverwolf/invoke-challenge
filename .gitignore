@@ -1,5 +1,3 @@
-Capfile
-/app/config/deploy.rb
 /web/bundles/
 /web/css/*
 !/web/css/.gitkeep

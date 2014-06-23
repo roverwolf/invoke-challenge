@@ -36,8 +36,10 @@ class PointsListener
      */
     public function onPointsUpdate(PlayerEvent $playerEvent)
     {
-        $pubnub = new Pubnub($this->publishKey, $this->subscribeKey, "", false);
+        if (!empty($this->publishKey)) {
+            $pubnub = new Pubnub($this->publishKey, $this->subscribeKey, "", false);
 
-        $info = $pubnub->publish('player_updates', json_encode($playerEvent->getPlayer()));
+            $info = $pubnub->publish('player_updates', json_encode($playerEvent->getPlayer()));
+        }
     }
 } 

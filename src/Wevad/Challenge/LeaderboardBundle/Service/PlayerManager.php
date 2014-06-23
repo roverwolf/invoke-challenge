@@ -2,7 +2,7 @@
 
 namespace Wevad\Challenge\LeaderboardBundle\Service;
 
-use Doctrine\Common\Persistence\ObjectManager;
+use Doctrine\ORM\EntityManagerInterface;
 use JMS\DiExtraBundle\Annotation as DI;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Wevad\Challenge\LeaderboardBundle\Entity\Player;
@@ -14,9 +14,9 @@ use Wevad\Challenge\LeaderboardBundle\Event\PlayerEvent;
 class PlayerManager
 {
     /**
-     * @var ObjectManager
+     * @var EntityManagerInterface
      */
-    private $om;
+    private $em;
 
     /**
      * @var EventDispatcherInterface
@@ -28,32 +28,40 @@ class PlayerManager
      *     "om" = @DI\Inject("doctrine.orm.entity_manager"),
      *     "dispatcher" = @DI\Inject("event_dispatcher")
      * })
-     * @param ObjectManager $om
+     * @param EntityManagerInterface $om
+     * @param EventDispatcherInterface $dispatcher
      */
-    public function __construct(ObjectManager $om, EventDispatcherInterface $dispatcher)
+    public function __construct(EntityManagerInterface $om, EventDispatcherInterface $dispatcher)
     {
-        $this->om = $om;
+        $this->em = $om;
         $this->dispatcher = $dispatcher;
     }
 
     public function getPlayers()
     {
-        $players = $this->om->getRepository('WevadChallengeLeaderboardBundle:Player')->findAll();
+        $players = $this->em->getRepository('WevadChallengeLeaderboardBundle:Player')->findAll();
 
         return $players;
     }
 
     public function getPlayer($playerId)
     {
-        $player = $this->om->getRepository('WevadChallengeLeaderboardBundle:Player')->find($playerId);
+        $player = $this->em->getRepository('WevadChallengeLeaderboardBundle:Player')->find($playerId);
 
         return $player;
     }
 
     public function incrementPlayer(Player $player)
     {
-        $player->addPoints(5);
-        $this->om->flush();
+        $this->em->createQuery('
+            UPDATE WevadChallengeLeaderboardBundle:Player p
+               SET p.points = p.points + 5
+             WHERE p.id = :id
+        ')
+        ->setParameter('id', $player->getId())
+        ->execute();
+
+        $this->em->refresh($player);
 
         $this->dispatcher->dispatch('player.added_points', new PlayerEvent($player));
 
