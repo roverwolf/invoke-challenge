@@ -20,5 +20,5 @@ Choices made for the code were:
         - adding the database_* parameters
           from `app/config/parameters.yml.dist` to `app/config/parameters.yml`
           using appropriate values
-        - running `./bin/console doctrine:migrate`
+        - running `./bin/console doctrine:migrations:migrate`
 - For real-time updates across clients provide [pubnub](http://pubnub.com) publish and subscribe keys in `app/config/parameters.yml`
